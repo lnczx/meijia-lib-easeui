@@ -27,7 +27,7 @@
                 android:layout_weight="1"
                 android:button="@null"
                 android:gravity="center"
-                android:text="消息"
+                android:text="秘友"
                 android:textColor="@color/index2_radiobutton_color" />
 
             <RadioButton
@@ -36,8 +36,8 @@
                 android:layout_weight="1"
                 android:button="@null"
                 android:gravity="center"
-                android:text="秘友"
-                android:textColor="@color/index2_radiobutton_color" />
+                android:text="消息"
+                android:textColor="@color/simi_color_red" />
         </RadioGroup>
 
         <LinearLayout
@@ -51,14 +51,14 @@
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_weight="1"
-                android:background="@color/simi_color_red" />
+                android:background="@android:color/transparent" />
 
             <View
                 android:id="@+id/line_2"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_weight="1"
-                android:background="@android:color/transparent" />
+                android:background="@color/simi_color_red" />
         </LinearLayout>
     </RelativeLayout>
 
