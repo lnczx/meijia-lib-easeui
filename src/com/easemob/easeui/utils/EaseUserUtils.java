@@ -53,8 +53,8 @@ public class EaseUserUtils {
     	EaseUser user = getUserInfo(username);
         if(user != null && !TextUtils.isEmpty(user.getAvatar())){//modify by garry
             try {
-                int avatarResId = Integer.parseInt(user.getAvatar());
-                Picasso.with(context).load(avatarResId).into(imageView);
+//                int avatarResId = Integer.parseInt(user.getAvatar());
+                Picasso.with(context).load(user.getAvatar()).into(imageView);
             } catch (Exception e) {
                 //正常的string路径
 //                Picasso.with(context).load(user.getAvatar()).placeholder(R.drawable.ease_default_avatar).into(imageView);
@@ -87,8 +87,8 @@ public class EaseUserUtils {
     public static void setUserAvatar(Context context, EaseUser user, ImageView imageView){
         if(user != null && !TextUtils.isEmpty(user.getAvatar())){//modify by garry
             try {
-                int avatarResId = Integer.parseInt(user.getAvatar());
-                Picasso.with(context).load(avatarResId).into(imageView);
+//                int avatarResId = Integer.parseInt(user.getAvatar());
+            	Picasso.with(context).load(user.getAvatar()).into(imageView);
             } catch (Exception e) {
                 //正常的string路径
 //                Picasso.with(context).load(user.getAvatar()).placeholder(R.drawable.ease_default_avatar).into(imageView);
