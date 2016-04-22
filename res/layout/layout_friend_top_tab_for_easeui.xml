@@ -30,14 +30,17 @@
                 android:gravity="right"
                 android:text="动态"
                 android:textSize="15sp"
-                android:textColor="@color/index2_radiobutton_color" />
+                android:textColor="@color/index2_radiobutton_color"
+                android:visibility="gone"
+                 />
             <RadioButton
                 android:id="@+id/rb_friend"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:button="@null"
-                android:gravity="center"
+                android:gravity="right"
+                android:layout_marginRight="10dp"
                 android:text="好友"
                 android:textSize="15sp"
                 android:textColor="@color/index2_radiobutton_color" />
@@ -49,6 +52,7 @@
                 android:layout_weight="1"
                 android:button="@null"
                 android:gravity="left"
+                android:layout_marginLeft="10dp"
                 android:text="消息"
                 android:textSize="18sp"
                 android:textColor="@color/simi_color_red" />
