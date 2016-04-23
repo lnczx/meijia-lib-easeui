@@ -1,13 +1,24 @@
-apply plugin: 'android-library'
+apply plugin: 'com.android.library'
 
 dependencies {
-    compile fileTree(dir: 'libs', include: '*.jar')
+   compile fileTree(dir: 'libs', include: '*.jar') 
 }
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 22
+    buildToolsVersion "23.0.3"
+    enforceUniquePackageName=false
+	
+	defaultConfig { 
+        minSdkVersion 14
+        targetSdkVersion 21
 
+    } 
+	
+	lintOptions{  
+        abortOnError false  
+    }  
+    
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -17,6 +28,7 @@ android {
             renderscript.srcDirs = ['src']
             res.srcDirs = ['res']
             assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
         }
 
         // Move the tests to tests/java, tests/res, etc...
