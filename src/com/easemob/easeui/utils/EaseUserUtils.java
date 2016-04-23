@@ -3,6 +3,7 @@ package com.easemob.easeui.utils;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.tsz.afinal.FinalBitmap;
 import net.tsz.afinal.FinalHttp;
 import net.tsz.afinal.http.AjaxCallBack;
 import net.tsz.afinal.http.AjaxParams;
@@ -23,10 +24,10 @@ import com.easemob.easeui.controller.EaseUI.EaseUserProfileProvider;
 import com.easemob.easeui.database.DBHelper;
 import com.easemob.easeui.domain.EaseUser;
 import com.google.gson.Gson;
-import com.squareup.picasso.Picasso;
 
 public class EaseUserUtils {
     
+    private static FinalBitmap finalBitmap;
     static EaseUserProfileProvider userProvider;
     
     static {
@@ -51,17 +52,21 @@ public class EaseUserUtils {
      */
     public static void setUserAvatar(Context context, String username, ImageView imageView){
     	EaseUser user = getUserInfo(username);
+         finalBitmap = FinalBitmap.create(context);
         if(user != null && !TextUtils.isEmpty(user.getAvatar())){//modify by garry
             try {
 //                int avatarResId = Integer.parseInt(user.getAvatar());
-                Picasso.with(context).load(user.getAvatar()).into(imageView);
+//                Picasso.with(context).load(user.getAvatar()).into(imageView);
+                finalBitmap.display(imageView,user.getAvatar());
             } catch (Exception e) {
                 //正常的string路径
 //                Picasso.with(context).load(user.getAvatar()).placeholder(R.drawable.ease_default_avatar).into(imageView);
-            	Picasso.with(context).load(R.drawable.ease_default_avatar).into(imageView);
+//            	Picasso.with(context).load(R.drawable.ease_default_avatar).into(imageView);
+            	imageView.setBackgroundResource(R.drawable.ease_default_avatar);
             }
         }else{
-            Picasso.with(context).load(R.drawable.ease_default_avatar).into(imageView);
+//            Picasso.with(context).load(R.drawable.ease_default_avatar).into(imageView);
+            imageView.setBackgroundResource(R.drawable.ease_default_avatar);
         }
     }
     
@@ -88,14 +93,17 @@ public class EaseUserUtils {
         if(user != null && !TextUtils.isEmpty(user.getAvatar())){//modify by garry
             try {
 //                int avatarResId = Integer.parseInt(user.getAvatar());
-            	Picasso.with(context).load(user.getAvatar()).into(imageView);
+//            	Picasso.with(context).load(user.getAvatar()).into(imageView);
+            	   finalBitmap.display(imageView,user.getAvatar());
             } catch (Exception e) {
                 //正常的string路径
 //                Picasso.with(context).load(user.getAvatar()).placeholder(R.drawable.ease_default_avatar).into(imageView);
-            	Picasso.with(context).load(R.drawable.ease_default_avatar).into(imageView);//modify by garry
+//            	Picasso.with(context).load(R.drawable.ease_default_avatar).into(imageView);//modify by garry
+                imageView.setBackgroundResource(R.drawable.ease_default_avatar);
             }
         }else{
-            Picasso.with(context).load(R.drawable.ease_default_avatar).into(imageView);
+//            Picasso.with(context).load(R.drawable.ease_default_avatar).into(imageView);
+            imageView.setBackgroundResource(R.drawable.ease_default_avatar);
         }
     }
     
