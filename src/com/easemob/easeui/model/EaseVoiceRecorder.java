@@ -131,7 +131,8 @@ public class EaseVoiceRecorder {
         return 0;
     }
 
-    protected void finalize() throws Throwable {
+    @Override
+	protected void finalize() throws Throwable {
         super.finalize();
         if (recorder != null) {
             recorder.release();

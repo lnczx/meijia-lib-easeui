@@ -88,7 +88,7 @@ public class EaseMessageAdapter extends BaseAdapter{
 		private void refreshList() {
 			// UI线程不能直接使用conversation.getAllMessages()
 			// 否则在UI刷新过程中，如果收到新的消息，会导致并发问题
-			messages = (EMMessage[]) conversation.getAllMessages().toArray(new EMMessage[conversation.getAllMessages().size()]);
+			messages = conversation.getAllMessages().toArray(new EMMessage[conversation.getAllMessages().size()]);
 			for (int i = 0; i < messages.length; i++) {
 				// getMessage will set message as read status
 				conversation.getMessage(i);
@@ -148,6 +148,7 @@ public class EaseMessageAdapter extends BaseAdapter{
     }
 	
 
+	@Override
 	public EMMessage getItem(int position) {
 		if (messages != null && position < messages.length) {
 			return messages[position];
@@ -155,6 +156,7 @@ public class EaseMessageAdapter extends BaseAdapter{
 		return null;
 	}
 
+	@Override
 	public long getItemId(int position) {
 		return position;
 	}
@@ -162,13 +164,15 @@ public class EaseMessageAdapter extends BaseAdapter{
 	/**
      * 获取item数
      */
-    public int getCount() {
+    @Override
+	public int getCount() {
         return messages == null ? 0 : messages.length;
     }
 	
 	/**
 	 * 获取item类型数
 	 */
+	@Override
 	public int getViewTypeCount() {
 	    if(customRowProvider != null && customRowProvider.getCustomChatRowTypeCount() > 0){
 	        return customRowProvider.getCustomChatRowTypeCount() + 12;
@@ -180,6 +184,7 @@ public class EaseMessageAdapter extends BaseAdapter{
 	/**
 	 * 获取item类型
 	 */
+	@Override
 	public int getItemViewType(int position) {
 		EMMessage message = getItem(position); 
 		if (message == null) {
@@ -245,6 +250,7 @@ public class EaseMessageAdapter extends BaseAdapter{
     }
     
 
+	@Override
 	@SuppressLint("NewApi")
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		EMMessage message = getItem(position);

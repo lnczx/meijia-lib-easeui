@@ -122,7 +122,8 @@ public class EaseContactListFragment extends EaseBaseFragment {
         }
         
         query.addTextChangedListener(new TextWatcher() {
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            @Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
                 contactListLayout.filter(s);
                 if (s.length() > 0) {
                     clearSearch.setVisibility(View.VISIBLE);
@@ -132,10 +133,12 @@ public class EaseContactListFragment extends EaseBaseFragment {
                 }
             }
 
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            @Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
-            public void afterTextChanged(Editable s) {
+            @Override
+			public void afterTextChanged(Editable s) {
             }
         });
         clearSearch.setOnClickListener(new OnClickListener() {
@@ -189,12 +192,14 @@ public class EaseContactListFragment extends EaseBaseFragment {
         pd.setCanceledOnTouchOutside(false);
         pd.show();
         new Thread(new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
                 try {
                     //加入到黑名单
                     EMContactManager.getInstance().addUserToBlackList(username,false);
                     getActivity().runOnUiThread(new Runnable() {
-                        public void run() {
+                        @Override
+						public void run() {
                             pd.dismiss();
                             Toast.makeText(getActivity(), st2, 0).show();
                             refresh();
@@ -203,7 +208,8 @@ public class EaseContactListFragment extends EaseBaseFragment {
                 } catch (EaseMobException e) {
                     e.printStackTrace();
                     getActivity().runOnUiThread(new Runnable() {
-                        public void run() {
+                        @Override
+						public void run() {
                             pd.dismiss();
                             Toast.makeText(getActivity(), st3, 0).show();
                         }
@@ -288,7 +294,8 @@ public class EaseContactListFragment extends EaseBaseFragment {
                 isConflict = true;
             } else {
                 getActivity().runOnUiThread(new Runnable() {
-                    public void run() {
+                    @Override
+					public void run() {
                         onConnectionDisconnected();
                     }
 
@@ -299,7 +306,8 @@ public class EaseContactListFragment extends EaseBaseFragment {
         @Override
         public void onConnected() {
             getActivity().runOnUiThread(new Runnable() {
-                public void run() {
+                @Override
+				public void run() {
                     onConnectionConnected();
                 }
 

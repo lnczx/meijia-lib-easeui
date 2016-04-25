@@ -22,13 +22,9 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.RadioGroup;
-import android.widget.Toast;
-
 import com.easemob.EMConnectionListener;
 import com.easemob.EMError;
 import com.easemob.chat.EMChatManager;
@@ -95,7 +91,8 @@ public class EaseConversationListFragment extends EaseBaseFragment{
         EMChatManager.getInstance().addConnectionListener(connectionListener);
         
         query.addTextChangedListener(new TextWatcher() {
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            @Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
                 conversationListView.filter(s);
                 if (s.length() > 0) {
                     clearSearch.setVisibility(View.VISIBLE);
@@ -104,10 +101,12 @@ public class EaseConversationListFragment extends EaseBaseFragment{
                 }
             }
 
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            @Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
-            public void afterTextChanged(Editable s) {
+            @Override
+			public void afterTextChanged(Editable s) {
             }
         });
         clearSearch.setOnClickListener(new OnClickListener() {
@@ -147,7 +146,8 @@ public class EaseConversationListFragment extends EaseBaseFragment{
     private EaseConversationListItemClickListener listItemClickListener;
     
     protected Handler handler = new Handler(){
-        public void handleMessage(android.os.Message msg) {
+        @Override
+		public void handleMessage(android.os.Message msg) {
             switch (msg.what) {
             case 0:
                 onConnectionDisconnected();
@@ -247,7 +247,8 @@ public class EaseConversationListFragment extends EaseBaseFragment{
         });
     }
     
-   protected void hideSoftKeyboard() {
+   @Override
+protected void hideSoftKeyboard() {
         if (getActivity().getWindow().getAttributes().softInputMode != WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN) {
             if (getActivity().getCurrentFocus() != null)
                 inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),

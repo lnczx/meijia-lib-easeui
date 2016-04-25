@@ -221,7 +221,8 @@ public abstract class EaseChatRow extends LinearLayout {
                 @Override
                 public void onProgress(final int progress, String status) {
                     activity.runOnUiThread(new Runnable() {
-                        public void run() {
+                        @Override
+						public void run() {
                             if(percentageView != null){
                                 percentageView.setText(progress + "%");
                             }
@@ -296,7 +297,8 @@ public abstract class EaseChatRow extends LinearLayout {
 
     protected void updateView() {
         activity.runOnUiThread(new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
                 if (message.status == EMMessage.Status.FAIL) {
 
                     if (message.getError() == EMError.MESSAGE_SEND_INVALID_CONTENT) {

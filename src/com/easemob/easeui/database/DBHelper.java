@@ -37,6 +37,7 @@ public class DBHelper {
 		finalDb = FinalDb.create(context, DBNAME, false, DBVERSION,
 				new DbUpdateListener() {
 
+					@Override
 					public void onUpgrade(SQLiteDatabase db, int oldVersion,
 							int newVersion) {
 

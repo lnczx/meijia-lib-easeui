@@ -13,10 +13,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.provider.MediaStore.MediaColumns;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.text.ClipboardManager;
-import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -140,7 +140,8 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
     /**
      * init view
      */
-    protected void initView() {
+    @Override
+	protected void initView() {
         // 按住说话录音控件
         voiceRecorderView = (EaseVoiceRecorderView) getView().findViewById(R.id.voice_recorder);
 
@@ -188,7 +189,8 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
     /**
      * 设置属性，监听等
      */
-    protected void setUpView() {
+    @Override
+	protected void setUpView() {
     	//设置聊天界面标题，显示对方昵称 by garry
     	if(simiUser != null){
     		titleBar.setTitle(simiUser.getName());
@@ -606,7 +608,8 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
     
     protected void showChatroomToast(final String toastContent){
         getActivity().runOnUiThread(new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
                 Toast.makeText(getActivity(), toastContent, Toast.LENGTH_SHORT).show();
             }
         });
@@ -709,7 +712,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
      * @param selectedImage
      */
     protected void sendPicByUri(Uri selectedImage) {
-        String[] filePathColumn = { MediaStore.Images.Media.DATA };
+        String[] filePathColumn = { MediaColumns.DATA };
         Cursor cursor = getActivity().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
@@ -746,7 +749,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
     protected void sendFileByUri(Uri uri){
         String filePath = null;
         if ("content".equalsIgnoreCase(uri.getScheme())) {
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+            String[] filePathColumn = { MediaColumns.DATA };
             Cursor cursor = null;
 
             try {
@@ -900,7 +903,8 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
         public void onUserRemoved(final String groupId, String groupName) {
             getActivity().runOnUiThread(new Runnable() {
 
-                public void run() {
+                @Override
+				public void run() {
                     if (toChatUsername.equals(groupId)) {
                         Toast.makeText(getActivity(), R.string.you_are_group, 1).show();
                         getActivity().finish();
@@ -913,7 +917,8 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
         public void onGroupDestroy(final String groupId, String groupName) {
             // 群组解散正好在此页面，提示群组被解散，并finish此页面
             getActivity().runOnUiThread(new Runnable() {
-                public void run() {
+                @Override
+				public void run() {
                     if (toChatUsername.equals(groupId)) {
                         Toast.makeText(getActivity(), R.string.the_current_group, 1).show();
                         getActivity().finish();

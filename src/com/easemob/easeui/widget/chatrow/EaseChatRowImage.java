@@ -21,6 +21,7 @@ import com.easemob.easeui.model.EaseImageCache;
 import com.easemob.easeui.ui.EaseShowBigImageActivity;
 import com.easemob.easeui.utils.EaseCommonUtils;
 import com.easemob.easeui.utils.EaseImageUtils;
+import com.easemob.util.ImageUtils;
 
 public class EaseChatRowImage extends EaseChatRowFile{
 
@@ -127,17 +128,18 @@ public class EaseChatRowImage extends EaseChatRowFile{
                 protected Bitmap doInBackground(Object... args) {
                     File file = new File(thumbernailPath);
                     if (file.exists()) {
-                        return EaseImageUtils.decodeScaleImage(thumbernailPath, 160, 160);
+                        return ImageUtils.decodeScaleImage(thumbernailPath, 160, 160);
                     } else {
                         if (message.direct == EMMessage.Direct.SEND) {
-                            return EaseImageUtils.decodeScaleImage(localFullSizePath, 160, 160);
+                            return ImageUtils.decodeScaleImage(localFullSizePath, 160, 160);
                         } else {
                             return null;
                         }
                     }
                 }
 
-                protected void onPostExecute(Bitmap image) {
+                @Override
+				protected void onPostExecute(Bitmap image) {
                     if (image != null) {
                         iv.setImageBitmap(image);
                         EaseImageCache.getInstance().put(thumbernailPath, image);

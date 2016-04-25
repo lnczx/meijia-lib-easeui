@@ -2,7 +2,6 @@ package com.easemob.easeui.bean;
 
 import java.io.Serializable;
 
-import net.tsz.afinal.annotation.sqlite.Id;
 import net.tsz.afinal.annotation.sqlite.Table;
 
 /**

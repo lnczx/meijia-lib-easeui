@@ -75,6 +75,7 @@ public class EaseBaiduMapActivity extends EaseBaseActivity {
 	 * 构造广播监听类，监听 SDK key 验证以及网络异常广播
 	 */
 	public class BaiduSDKReceiver extends BroadcastReceiver {
+		@Override
 		public void onReceive(Context context, Intent intent) {
 			String s = intent.getAction();
 			String st1 = getResources().getString(R.string.Network_error);
@@ -154,6 +155,7 @@ public class EaseBaiduMapActivity extends EaseBaseActivity {
 
 		progressDialog.setOnCancelListener(new OnCancelListener() {
 
+			@Override
 			public void onCancel(DialogInterface arg0) {
 				if (progressDialog.isShowing()) {
 					progressDialog.dismiss();
@@ -256,10 +258,12 @@ public class EaseBaiduMapActivity extends EaseBaseActivity {
 	}
 
 	public class NotifyLister extends BDNotifyListener {
+		@Override
 		public void onNotify(BDLocation mlocation, float distance) {
 		}
 	}
 
+	@Override
 	public void back(View v) {
 		finish();
 	}

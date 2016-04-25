@@ -8,14 +8,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.Toast;
-
-import com.easemob.EMError;
 import com.easemob.easeui.R;
 import com.easemob.easeui.widget.EaseChatExtendMenu.EaseChatExtendMenuItemClickListener;
 import com.easemob.easeui.widget.EaseChatPrimaryMenuBase.EaseChatPrimaryMenuListener;
 import com.easemob.easeui.widget.EaseEmojiconMenuBase.EaseEmojiconMenuListener;
-import com.easemob.easeui.widget.chatrow.EaseChatRowVoicePlayClickListener;
 
 /**
  * 聊天页面底部的聊天输入菜单栏 <br/>
@@ -203,7 +199,8 @@ public class EaseChatInputMenu extends LinearLayout {
         if (chatExtendMenuContainer.getVisibility() == View.GONE) {
             hideKeyboard();
             handler.postDelayed(new Runnable() {
-                public void run() {
+                @Override
+				public void run() {
                     chatExtendMenuContainer.setVisibility(View.VISIBLE);
                     chatExtendMenu.setVisibility(View.VISIBLE);
                     emojiconMenu.setVisibility(View.GONE);
@@ -228,7 +225,8 @@ public class EaseChatInputMenu extends LinearLayout {
         if (chatExtendMenuContainer.getVisibility() == View.GONE) {
             hideKeyboard();
             handler.postDelayed(new Runnable() {
-                public void run() {
+                @Override
+				public void run() {
                     chatExtendMenuContainer.setVisibility(View.VISIBLE);
                     chatExtendMenu.setVisibility(View.GONE);
                     emojiconMenu.setVisibility(View.VISIBLE);

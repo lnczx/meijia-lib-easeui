@@ -47,7 +47,6 @@ import com.easemob.easeui.bean.SimiUser;
 import com.easemob.easeui.controller.EaseUI;
 import com.easemob.easeui.controller.EaseUI.EaseSettingsProvider;
 import com.easemob.easeui.database.DBHelper;
-import com.easemob.easeui.domain.EaseUser;
 import com.easemob.easeui.utils.EaseCommonUtils;
 import com.easemob.util.EMLog;
 import com.easemob.util.EasyUtils;
@@ -380,7 +379,8 @@ public class EaseNotifier {
                     // needed
                     if (vendor != null && vendor.toLowerCase().contains("samsung")) {
                         Thread ctlThread = new Thread() {
-                            public void run() {
+                            @Override
+							public void run() {
                                 try {
                                     Thread.sleep(3000);
                                     if (ringtone.isPlaying()) {
