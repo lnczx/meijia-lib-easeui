@@ -102,7 +102,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
     protected boolean isloading;
     protected boolean haveMoreData = true;
     protected int pagesize = 20;
-    protected GroupListener groupListener;
+
     protected EMMessage contextMenuMessage;
     
     static final int ITEM_TAKE_PICTURE = 1;
@@ -207,18 +207,18 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
             }
             titleBar.setRightImageResource(R.drawable.ease_mm_title_remove);
         } else {
-            if (chatType == EaseConstant.CHATTYPE_GROUP) {
-                // 群聊
-                EMGroup group = EMGroupManager.getInstance().getGroup(toChatUsername);
-                if (group != null)
-                    titleBar.setTitle(group.getGroupName());
-                titleBar.setRightImageResource(R.drawable.ease_to_group_details_normal);
-                // 监听当前会话的群聊解散被T事件
-                groupListener = new GroupListener();
-                EMGroupManager.getInstance().addGroupChangeListener(groupListener);
-            } else {
-                onChatRoomViewCreation();
-            }
+//            if (chatType == EaseConstant.CHATTYPE_GROUP) {
+//                // 群聊
+//                EMGroup group = EMGroupManager.getInstance().getGroup(toChatUsername);
+//                if (group != null)
+//                    titleBar.setTitle(group.getGroupName());
+//                titleBar.setRightImageResource(R.drawable.ease_to_group_details_normal);
+//                // 监听当前会话的群聊解散被T事件
+//                groupListener = new GroupListener();
+//                EMGroupManager.getInstance().addGroupChangeListener(groupListener);
+//            } else {
+//                onChatRoomViewCreation();
+//            }
 
         }
         if (chatType != EaseConstant.CHATTYPE_CHATROOM) {
@@ -452,9 +452,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (groupListener != null) {
-            EMGroupManager.getInstance().removeGroupChangeListener(groupListener);
-        }
+     
         if(chatType == EaseConstant.CHATTYPE_CHATROOM){
             EMChatManager.getInstance().leaveChatRoom(toChatUsername);
         }
@@ -928,6 +926,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
         }
 
     }
+
     
    
     protected EaseChatFragmentListener chatFragmentListener;
